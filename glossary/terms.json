@@ -1,0 +1,398 @@
+[
+  {
+    "slug": "expense-tracker",
+    "term": "Expense tracker",
+    "definition": "An app or spreadsheet that records money you spend (and often income) by date, category, and payment mode so you can see where cash and UPI goes.",
+    "related": [
+      "daily-expense-tracker",
+      "google-sheets-expense-tracker",
+      "upi-expense-tracker"
+    ]
+  },
+  {
+    "slug": "daily-expense-tracker",
+    "term": "Daily expense tracker",
+    "definition": "A habit and tool for logging spends the same day they happen — cash, UPI, or cards — instead of reconstructing the week from memory.",
+    "related": [
+      "daily-kharch",
+      "spending-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "free-expense-tracker",
+    "term": "Free expense tracker",
+    "definition": "An expense tracker you can try without a monthly subscription. Kharch Log uses a one-time lifetime unlock instead of recurring SaaS fees.",
+    "related": [
+      "expense-tracker",
+      "budget-tracker"
+    ]
+  },
+  {
+    "slug": "upi-expense-tracker",
+    "term": "UPI expense tracker",
+    "definition": "An expense tracker built for India’s Unified Payments Interface — capturing small transfers that are easy to forget after a busy day.",
+    "related": [
+      "bank-sms-expense-tracker",
+      "daily-kharch",
+      "needs-review-inbox"
+    ]
+  },
+  {
+    "slug": "bank-sms-expense-tracker",
+    "term": "Bank SMS expense tracker",
+    "definition": "Software that reads bank or UPI debit/credit SMS on your phone (with permission) and turns them into ledger rows you can approve or edit.",
+    "related": [
+      "upi-expense-tracker",
+      "needs-review-inbox",
+      "sms-permission"
+    ]
+  },
+  {
+    "slug": "google-sheets-expense-tracker",
+    "term": "Google Sheets expense tracker",
+    "definition": "Keeping your money book in a Google Sheet you own in Drive — often paired with a mobile app that appends rows instead of locking history in a vendor cloud.",
+    "related": [
+      "excel-expense-tracker",
+      "expense-ledger",
+      "personal-finance-tracker"
+    ]
+  },
+  {
+    "slug": "excel-expense-tracker",
+    "term": "Excel expense tracker",
+    "definition": "A spreadsheet workbook (often .xlsx) used as an income and expense ledger. Powerful for pivots; weak if you never open the laptop after UPI spends.",
+    "related": [
+      "google-sheets-expense-tracker",
+      "income-expense-tracker",
+      "monthly-expense-tracker"
+    ]
+  },
+  {
+    "slug": "income-expense-tracker",
+    "term": "Income and expense tracker",
+    "definition": "A two-sided money book that logs money in and money out so you can compute savings rate, not only spending totals.",
+    "related": [
+      "expense-tracker",
+      "personal-finance-tracker",
+      "monthly-expense-tracker"
+    ]
+  },
+  {
+    "slug": "monthly-expense-tracker",
+    "term": "Monthly expense tracker",
+    "definition": "A view or sheet that groups spends by calendar month for rent, EMI, groceries, and category totals at month-end.",
+    "related": [
+      "daily-expense-tracker",
+      "budget-tracker",
+      "bill-tracker"
+    ]
+  },
+  {
+    "slug": "weekly-expense-tracker",
+    "term": "Weekly expense tracker",
+    "definition": "A short review cadence — usually Sunday — to catch missed UPI payments and reset categories before the next week.",
+    "related": [
+      "daily-expense-tracker",
+      "spending-tracker"
+    ]
+  },
+  {
+    "slug": "personal-finance-tracker",
+    "term": "Personal finance tracker",
+    "definition": "A system for an individual’s cash flow: income, expenses, bills, and savings — not enterprise accounting software.",
+    "related": [
+      "personal-expense-tracker",
+      "budget-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "personal-expense-tracker",
+    "term": "Personal expense tracker",
+    "definition": "Expense tracking for one person or household ledger shared with family — categories like food, travel, rent, and UPI transfers.",
+    "related": [
+      "family-expense-tracker",
+      "daily-kharch",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "family-expense-tracker",
+    "term": "Family expense tracker",
+    "definition": "A shared money book where partners or household members see the same ledger — often via a shared Google Sheet.",
+    "related": [
+      "personal-expense-tracker",
+      "split-expenses",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "budget-tracker",
+    "term": "Budget tracker",
+    "definition": "Tools that compare planned spend vs actuals by category. Spreadsheets and Sheets pivots work well once daily capture is reliable.",
+    "related": [
+      "monthly-expense-tracker",
+      "spending-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "spending-tracker",
+    "term": "Spending tracker",
+    "definition": "Focus on money out — cash, UPI, cards — with categories and dates so you can spot leaks like food delivery or transfers.",
+    "related": [
+      "daily-expense-tracker",
+      "upi-expense-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "bill-tracker",
+    "term": "Bill tracker",
+    "definition": "Tracking recurring payments (rent, EMI, utilities, subscriptions) with payees and due habits so nothing surprises you mid-month.",
+    "related": [
+      "monthly-expense-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "expense-ledger",
+    "term": "Expense ledger",
+    "definition": "The durable list of dated transactions — traditionally a notebook or Excel sheet; in Kharch Log, your Google Sheet is the ledger.",
+    "related": [
+      "google-sheets-expense-tracker",
+      "excel-expense-tracker"
+    ]
+  },
+  {
+    "slug": "daily-kharch",
+    "term": "Daily kharch",
+    "definition": "Everyday spending in Indian usage — chai, auto, UPI to friends, kirana — the small amounts that vanish without a daily log.",
+    "related": [
+      "upi-expense-tracker",
+      "daily-expense-tracker",
+      "personal-expense-tracker"
+    ]
+  },
+  {
+    "slug": "kharch",
+    "term": "Kharch",
+    "definition": "Hindi/Urdu for expense or spending. “Kharch Log” means a log of your spends — the core idea behind the app.",
+    "related": [
+      "daily-kharch",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "sms-permission",
+    "term": "SMS permission",
+    "definition": "Android permission that lets an app read payment alert SMS on-device. Required for bank/UPI auto-capture; unclear messages should still need your approval.",
+    "related": [
+      "bank-sms-expense-tracker",
+      "needs-review-inbox"
+    ]
+  },
+  {
+    "slug": "needs-review-inbox",
+    "term": "Needs-review inbox",
+    "definition": "A queue for SMS-detected transactions that are unclear or incomplete — approve, reject, or edit before they become permanent ledger rows.",
+    "related": [
+      "bank-sms-expense-tracker",
+      "upi-expense-tracker"
+    ]
+  },
+  {
+    "slug": "voice-expense-entry",
+    "term": "Voice expense entry",
+    "definition": "Adding a spend by speaking amount and details, then confirming — useful when your hands are full after a purchase.",
+    "related": [
+      "expense-tracker",
+      "daily-expense-tracker"
+    ]
+  },
+  {
+    "slug": "expense-category",
+    "term": "Expense category",
+    "definition": "A label such as Food, Travel, Rent, or Shopping used to group transactions for reports and monthly reviews.",
+    "related": [
+      "spending-tracker",
+      "budget-tracker"
+    ]
+  },
+  {
+    "slug": "payment-mode",
+    "term": "Payment mode",
+    "definition": "How you paid — UPI, cash, card, net banking — so you can separate wallet spends from cash without mixing them in reports.",
+    "related": [
+      "upi-expense-tracker",
+      "expense-tracker"
+    ]
+  },
+  {
+    "slug": "split-expenses",
+    "term": "Split expenses",
+    "definition": "Sharing or reconciling spends across roommates or partners. A shared Google Sheet often works better than locked family-plan apps.",
+    "related": [
+      "family-expense-tracker",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "household-expense-tracker",
+    "term": "Household expense tracker",
+    "definition": "Tracking common home costs — groceries, help, utilities, EMI — in one ledger visible to the household.",
+    "related": [
+      "family-expense-tracker",
+      "bill-tracker"
+    ]
+  },
+  {
+    "slug": "lifetime-access",
+    "term": "Lifetime access",
+    "definition": "Pay once for ongoing use of the app without a monthly subscription. Kharch Log lifetime unlock is a one-time fee on the website.",
+    "related": [
+      "free-expense-tracker"
+    ]
+  },
+  {
+    "slug": "google-drive-file-scope",
+    "term": "Google Drive file scope",
+    "definition": "Limited OAuth access (drive.file) so an app can only use Drive files it creates for you — not your entire Drive.",
+    "related": [
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "expense-report",
+    "term": "Expense report",
+    "definition": "A summary by day, category, or payee. On phone you get Today views; in Sheets you can pivot and chart deeper reports.",
+    "related": [
+      "monthly-expense-tracker",
+      "spending-tracker"
+    ]
+  },
+  {
+    "slug": "invoice-pdf",
+    "term": "Invoice PDF",
+    "definition": "A shareable PDF of a logged expense for reimbursements or records — while the Google Sheet remains the source of truth.",
+    "related": [
+      "expense-tracker",
+      "expense-ledger"
+    ]
+  },
+  {
+    "slug": "cash-expense-tracking",
+    "term": "Cash expense tracking",
+    "definition": "Logging physical cash spends that never appear in bank SMS — still critical for honest daily kharch totals.",
+    "related": [
+      "voice-expense-entry",
+      "daily-expense-tracker"
+    ]
+  },
+  {
+    "slug": "emi-tracking",
+    "term": "EMI tracking",
+    "definition": "Recording equated monthly installments as recurring expenses so month-end totals include loans and device EMIs.",
+    "related": [
+      "bill-tracker",
+      "monthly-expense-tracker"
+    ]
+  },
+  {
+    "slug": "savings-rate",
+    "term": "Savings rate",
+    "definition": "Income minus expenses over a period, as a percentage of income. Needs both sides logged in an income and expense tracker.",
+    "related": [
+      "income-expense-tracker",
+      "personal-finance-tracker"
+    ]
+  },
+  {
+    "slug": "spreadsheet-money-book",
+    "term": "Spreadsheet money book",
+    "definition": "Using Excel or Google Sheets as your primary finance record — flexible and portable if capture stays complete.",
+    "related": [
+      "excel-expense-tracker",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "form-16-not-needed",
+    "term": "Form 16 not needed",
+    "definition": "Kharch Log is a personal daily expense tracker — not tax software. You do not need Form 16 to use it, and it does not generate Form 16 or file ITR for you.",
+    "related": [
+      "expense-tracker",
+      "personal-finance-tracker",
+      "daily-kharch"
+    ]
+  },
+  {
+    "slug": "no-bank-login-expense-tracker",
+    "term": "No bank login expense tracker",
+    "definition": "An expense app that never asks for net banking or account credentials. Kharch Log uses optional SMS capture on your phone plus manual/voice entry instead of bank logins.",
+    "related": [
+      "bank-sms-expense-tracker",
+      "upi-expense-tracker",
+      "sms-permission"
+    ]
+  },
+  {
+    "slug": "android-apk-expense-tracker",
+    "term": "Android APK expense tracker",
+    "definition": "An Android expense tracker you install from a signed APK download (sideload) rather than only from Play Store — useful when the developer ships direct updates from their site.",
+    "related": [
+      "free-expense-tracker",
+      "lifetime-access"
+    ]
+  },
+  {
+    "slug": "phonepe-gpay-expense-tracker",
+    "term": "PhonePe GPay expense tracker",
+    "definition": "Tracking spends across PhonePe, Google Pay, Paytm and other UPI apps in one ledger — usually via bank/UPI SMS, not by linking each wallet login.",
+    "related": [
+      "upi-expense-tracker",
+      "bank-sms-expense-tracker",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "roommate-expense-tracker",
+    "term": "Roommate expense tracker",
+    "definition": "A shared money book for PG or flatmates — often a Google Sheet plus an Android logger so rent, groceries, and UPI splits stay visible to everyone who has Sheet access.",
+    "related": [
+      "split-expenses",
+      "family-expense-tracker",
+      "google-sheets-expense-tracker"
+    ]
+  },
+  {
+    "slug": "no-subscription-expense-tracker",
+    "term": "No subscription expense tracker",
+    "definition": "Expense tracking without a monthly SaaS fee. Kharch Log uses a one-time ₹149 lifetime unlock instead of recurring subscriptions.",
+    "related": [
+      "lifetime-access",
+      "free-expense-tracker"
+    ]
+  },
+  {
+    "slug": "hisab-kitab",
+    "term": "Hisab kitab",
+    "definition": "Hindi/Urdu for a simple money account or ledger — the everyday hisab of cash and UPI that Kharch Log keeps in your Google Sheet.",
+    "related": [
+      "daily-kharch",
+      "expense-ledger",
+      "spreadsheet-money-book"
+    ]
+  },
+  {
+    "slug": "offline-expense-tracker",
+    "term": "Offline expense tracker",
+    "definition": "Logging spends on-device even when data is patchy; sync to Google Sheets when you are back online. SMS capture still needs the phone to receive messages.",
+    "related": [
+      "daily-expense-tracker",
+      "cash-expense-tracking",
+      "google-sheets-expense-tracker"
+    ]
+  }
+]

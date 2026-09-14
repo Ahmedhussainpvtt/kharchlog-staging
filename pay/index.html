@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buy lifetime access — Kharch Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="https://staging.kharchlog.com/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://staging.kharchlog.com/apple-touch-icon.png" />
+</head>
+<body>
+  <div id="staging-banner" role="status" style="background:#7c2d12;color:#fff;text-align:center;padding:10px 14px;font:600 0.9rem/1.35 Manrope,system-ui,sans-serif;position:sticky;top:0;z-index:9999;">
+    STAGING (staging.kharchlog.com) — exact replica for testing · not indexed · <a href="https://kharchlog.com/" style="color:#fff;text-decoration:underline;">production</a>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand-lockup" href="/" aria-label="Kharch Log home">
+        <img src="https://staging.kharchlog.com/logo.png" alt="" />
+        <span class="brand-lockup__name">Kharch Log</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/features/">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a class="nav-cta" href="/pay/">Get lifetime — ₹149</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero pay-hero">
+        <h1>Lifetime access</h1>
+        <p class="hero-tagline">Pay once. Unlock Kharch Log forever.</p>
+      </section>
+
+      <div class="card pay-card">
+        <div class="pay-email-notice" role="note">
+          <strong>Use your Google sign-in email</strong>
+          The email below must match the Google account you use in the app. Wrong email = no unlock.
+        </div>
+
+        <p class="pay-price" id="pay-price">₹149 <span class="pay-once">one-time</span></p>
+        <div class="pay-currency" role="group" aria-label="Currency">
+          <button type="button" class="pay-currency__btn is-active" data-currency="INR" id="currencyInr">Pay in ₹ INR</button>
+          <button type="button" class="pay-currency__btn" data-currency="USD" id="currencyUsd">Pay in $ USD</button>
+        </div>
+
+        <label class="pay-label" for="firstName">First name <span class="req" aria-hidden="true">*</span></label>
+        <input class="pay-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required />
+
+        <label class="pay-label" for="lastName">Last name <span class="opt">(optional)</span></label>
+        <input class="pay-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" />
+
+        <label class="pay-label" for="email">Google email <span class="req" aria-hidden="true">*</span></label>
+        <input
+          class="pay-input"
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          inputmode="email"
+          placeholder="you@gmail.com"
+          required
+        />
+
+        <label class="pay-label" for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+        <input
+          class="pay-input"
+          id="phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="20"
+          placeholder="+91 98765 43210"
+          required
+        />
+
+        <p class="pay-email-check">After payment you’ll return here and we unlock that email automatically.</p>
+
+        <button type="button" class="btn pay-btn" id="payBtn">Pay ₹149</button>
+        <p class="pay-status" id="status" aria-live="polite"></p>
+        <p class="pay-fine">
+          Secure checkout via Razorpay.
+          Questions? <a href="mailto:easypeezetools@gmail.com">easypeezetools@gmail.com</a>
+        </p>
+      </div>
+
+      <p class="back-home"><a href="/">← Back to home</a></p>
+    </div>
+  </main>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/pay/config.js"></script>
+  <script src="/pay/checkout.js"></script>
+  <script src="../site-motion.js" defer></script>
+</body>
+</html>
