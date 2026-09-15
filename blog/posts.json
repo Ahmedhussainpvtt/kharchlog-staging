@@ -1,44 +1,212 @@
-{
-  "updated": "2026-09-09",
-  "posts": [
-    {
-      "slug": "how-to-track-expenses-automatically-with-sms",
-      "title": "How to track expenses automatically with bank SMS",
-      "description": "Learn how SMS-based expense tracking works on Android, when you need SMS permission, and how Kharch Log keeps data in your Google Sheet.",
-      "date": "2026-08-27",
-      "url": "/blog/how-to-track-expenses-automatically-with-sms/",
-      "image": "/images/blog/how-to-track-expenses-automatically-with-sms.jpg",
-      "tags": [
-        "sms expense tracker",
-        "automatic expense tracking",
-        "android"
-      ]
-    },
-    {
-      "slug": "google-sheets-vs-budget-apps",
-      "title": "Google Sheets expense tracker vs closed budget apps",
-      "description": "Compare keeping expenses in Google Sheets versus locking history inside a budget app. Why ownership matters for long-term tracking.",
-      "date": "2026-08-26",
-      "url": "/blog/google-sheets-vs-budget-apps/",
-      "image": "/images/blog/google-sheets-vs-budget-apps.jpg",
-      "tags": [
-        "google sheets expense tracker",
-        "budget app",
-        "personal finance"
-      ]
-    },
-    {
-      "slug": "daily-expense-tracker-habits",
-      "title": "Daily expense tracker habits that actually stick",
-      "description": "Practical habits for a daily expense tracker: log same day, use categories, review weekly. Tips inspired by simple money books.",
-      "date": "2026-08-25",
-      "url": "/blog/daily-expense-tracker-habits/",
-      "image": "/images/blog/daily-expense-tracker-habits.jpg",
-      "tags": [
-        "daily expense tracker",
-        "spending habits",
-        "budget tips"
-      ]
-    }
-  ]
+﻿{
+    "updated":  "2026-09-15",
+    "posts":  [
+                  {
+                      "slug":  "mid-month-budget-alerts-catch-leaks",
+                      "title":  "Mid-month budget alerts: catch spending leaks before month-end",
+                      "description":  "Month-end reports arrive too late. Use a mid-month Sheet check (and category focus) to spot dining, shopping, and subscription leaks while you can still fix them.",
+                      "date":  "2026-09-15",
+                      "url":  "/blog/mid-month-budget-alerts-catch-leaks/",
+                      "image":  "/images/blog/upi-expense-tracker-stop-losing-small-payments.jpg",
+                      "tags":  [
+                                   "budget alerts",
+                                   "spending leaks",
+                                   "India"
+                               ]
+                  },
+                  {
+                      "slug":  "account-aggregator-vs-sms-expense-tracker",
+                      "title":  "Do you need Account Aggregator for daily expense tracking?",
+                      "description":  "Account Aggregator is powerful for full net-worth views. For daily UPI kharch, bank SMS + Sheets is usually enough â€” with a clearer privacy trade-off.",
+                      "date":  "2026-09-14",
+                      "url":  "/blog/account-aggregator-vs-sms-expense-tracker/",
+                      "image":  "/images/blog/how-to-track-expenses-automatically-with-sms.jpg",
+                      "tags":  [
+                                   "Account Aggregator",
+                                   "privacy",
+                                   "SMS tracker"
+                               ]
+                  },
+                  {
+                      "slug":  "gpay-phonepe-vs-bank-sms-expense-ledger",
+                      "title":  "GPay / PhonePe history vs bank SMS: which expense ledger wins?",
+                      "description":  "App insights are handy, but multi-UPI households need one ledger. Why bank SMS + a Sheet beats exporting three payment-app histories every month.",
+                      "date":  "2026-09-13",
+                      "url":  "/blog/gpay-phonepe-vs-bank-sms-expense-ledger/",
+                      "image":  "/images/blog/how-to-track-expenses-automatically-with-sms.jpg",
+                      "tags":  [
+                                   "UPI",
+                                   "bank SMS",
+                                   "GPay",
+                                   "PhonePe"
+                               ]
+                  },
+                  {
+                      "slug":  "weekly-spending-review-20-minutes",
+                      "title":  "Weekly spending review in 20 minutes (Google Sheet method)",
+                      "description":  "A Sunday 20-minute review: skim UPI SMS drafts, fix cash gaps, check one category spike â€” then leave the ledger in your Google Sheet.",
+                      "date":  "2026-09-12",
+                      "url":  "/blog/weekly-spending-review-20-minutes/",
+                      "image":  "/images/blog/how-to-track-your-spending-every-week.jpg",
+                      "tags":  [
+                                   "weekly review",
+                                   "google sheets",
+                                   "budget tips"
+                               ]
+                  },
+                  {
+                      "slug":  "expense-categories-indian-household",
+                      "title":  "12 expense categories that work for Indian households",
+                      "description":  "Skip 40-tag chaos. A practical 12-category list for UPI + cash tracking in India â€” groceries, EMIs, transfers, and subscriptions â€” so weekly reviews stay usable.",
+                      "date":  "2026-09-11",
+                      "url":  "/blog/expense-categories-indian-household/",
+                      "image":  "/images/blog/google-sheets-vs-budget-apps.jpg",
+                      "tags":  [
+                                   "expense category",
+                                   "budget India",
+                                   "household expenses"
+                               ]
+                  },
+                  {
+                      "slug":  "track-cash-expenses-india-no-sms",
+                      "title":  "How to track cash expenses in India when there is no SMS",
+                      "description":  "Cash still skips bank SMS. A practical workflow for logging kirana, auto, and weekend cash spends â€” plus voice entry so your Google Sheet stays honest.",
+                      "date":  "2026-09-10",
+                      "url":  "/blog/track-cash-expenses-india-no-sms/",
+                      "image":  "/images/blog/daily-expense-tracker-habits.jpg",
+                      "tags":  [
+                                   "cash expense tracking",
+                                   "daily kharch",
+                                   "India"
+                               ]
+                  },
+                  {
+                      "slug":  "lifetime-vs-subscription-expense-apps-india",
+                      "title":  "Lifetime vs subscription expense apps in India (â‚¹149 reality check)",
+                      "description":  "Why Indian users hate monthly budget-app fees â€” and when a one-time lifetime unlock + Google Sheets ownership beats SaaS subscriptions.",
+                      "date":  "2026-09-09",
+                      "url":  "/blog/lifetime-vs-subscription-expense-apps-india/",
+                      "image":  "/images/blog/lifetime-vs-subscription-expense-apps-india.jpg",
+                      "tags":  [
+                                   "lifetime expense tracker",
+                                   "no subscription",
+                                   "India"
+                               ]
+                  },
+                  {
+                      "slug":  "install-kharch-log-apk-android",
+                      "title":  "How to install the Kharch Log APK on Android",
+                      "description":  "Sideload Kharch Log safely: download the APK, allow install, grant SMS only if you want auto-capture, connect your Google Sheet.",
+                      "date":  "2026-09-09",
+                      "url":  "/blog/install-kharch-log-apk-android/",
+                      "image":  "/images/blog/install-kharch-log-apk-android.jpg",
+                      "tags":  [
+                                   "APK",
+                                   "install",
+                                   "Android"
+                               ]
+                  },
+                  {
+                      "slug":  "expense-tracker-without-bank-login",
+                      "title":  "Expense tracker without bank login (SMS + Sheets)",
+                      "description":  "Track UPI spending without linking net banking. How SMS capture and Google Sheets ownership compare to bank-login apps.",
+                      "date":  "2026-09-09",
+                      "url":  "/blog/expense-tracker-without-bank-login/",
+                      "image":  "/images/blog/expense-tracker-without-bank-login.jpg",
+                      "tags":  [
+                                   "no bank login",
+                                   "SMS",
+                                   "privacy"
+                               ]
+                  },
+                  {
+                      "slug":  "expense-tracker-india-no-form-16",
+                      "title":  "Expense tracker for India that does not need Form 16",
+                      "description":  "Daily kharch is not tax filing. Why personal expense apps should not demand Form 16 â€” and what Kharch Log stores instead.",
+                      "date":  "2026-09-09",
+                      "url":  "/blog/expense-tracker-india-no-form-16/",
+                      "image":  "/images/blog/expense-tracker-india-no-form-16.jpg",
+                      "tags":  [
+                                   "Form 16",
+                                   "India",
+                                   "expense tracker"
+                               ]
+                  },
+                  {
+                      "slug":  "upi-expense-tracker-stop-losing-small-payments",
+                      "title":  "UPI expense tracker: stop losing small payments",
+                      "description":  "Small UPI payments add up fast. Learn how a UPI expense tracker and bank SMS auto-capture help you see the full picture without typing every tap.",
+                      "date":  "2026-08-30",
+                      "url":  "/blog/upi-expense-tracker-stop-losing-small-payments/",
+                      "image":  "/images/blog/upi-expense-tracker-stop-losing-small-payments.jpg",
+                      "tags":  [
+                                   "UPI",
+                                   "SMS",
+                                   "India"
+                               ]
+                  },
+                  {
+                      "slug":  "how-to-track-your-spending-every-week",
+                      "title":  "How to track your spending every week",
+                      "description":  "A simple weekly spending review that works with UPI and Google Sheets â€” without turning budgeting into a second job.",
+                      "date":  "2026-08-29",
+                      "url":  "/blog/how-to-track-your-spending-every-week/",
+                      "image":  "/images/blog/how-to-track-your-spending-every-week.jpg",
+                      "tags":  [
+                                   "weekly review",
+                                   "budget"
+                               ]
+                  },
+                  {
+                      "slug":  "best-free-expense-tracker-app-android",
+                      "title":  "Best free expense tracker app for Android in India",
+                      "description":  "What â€œfreeâ€ should mean for an Android expense tracker in India â€” SMS capture, Sheets export, and fair lifetime pricing.",
+                      "date":  "2026-08-28",
+                      "url":  "/blog/best-free-expense-tracker-app-android/",
+                      "image":  "/images/blog/best-free-expense-tracker-app-android.jpg",
+                      "tags":  [
+                                   "free expense tracker",
+                                   "Android"
+                               ]
+                  },
+                  {
+                      "slug":  "how-to-track-expenses-automatically-with-sms",
+                      "title":  "How to track expenses automatically with bank SMS",
+                      "description":  "Learn how SMS-based expense tracking works on Android, when you need SMS permission, and how Kharch Log keeps data in your Google Sheet.",
+                      "date":  "2026-08-27",
+                      "url":  "/blog/how-to-track-expenses-automatically-with-sms/",
+                      "image":  "/images/blog/how-to-track-expenses-automatically-with-sms.jpg",
+                      "tags":  [
+                                   "sms expense tracker",
+                                   "automatic expense tracking",
+                                   "android"
+                               ]
+                  },
+                  {
+                      "slug":  "google-sheets-vs-budget-apps",
+                      "title":  "Google Sheets expense tracker vs closed budget apps",
+                      "description":  "Compare keeping expenses in Google Sheets versus locking history inside a budget app. Why ownership matters for long-term tracking.",
+                      "date":  "2026-08-26",
+                      "url":  "/blog/google-sheets-vs-budget-apps/",
+                      "image":  "/images/blog/google-sheets-vs-budget-apps.jpg",
+                      "tags":  [
+                                   "google sheets expense tracker",
+                                   "budget app",
+                                   "personal finance"
+                               ]
+                  },
+                  {
+                      "slug":  "daily-expense-tracker-habits",
+                      "title":  "Daily expense tracker habits that actually stick",
+                      "description":  "Practical habits for a daily expense tracker: log same day, use categories, review weekly. Tips inspired by simple money books.",
+                      "date":  "2026-08-25",
+                      "url":  "/blog/daily-expense-tracker-habits/",
+                      "image":  "/images/blog/daily-expense-tracker-habits.jpg",
+                      "tags":  [
+                                   "daily expense tracker",
+                                   "spending habits",
+                                   "budget tips"
+                               ]
+                  }
+              ]
 }

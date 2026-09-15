@@ -863,6 +863,25 @@ a:hover { text-decoration: underline; }
   font-size: 0.92rem;
   font-weight: 600;
 }
+
+/* Footer Resources dropdown — open upward so it stays on-screen */
+.site-footer .footer-resources {
+  display: inline-flex;
+  align-items: center;
+}
+.site-footer .nav-dropdown__menu {
+  top: auto;
+  bottom: calc(100% + 10px);
+  right: auto;
+  left: 0;
+  transform: translateY(6px);
+  min-width: 220px;
+}
+.site-footer .nav-dropdown:hover .nav-dropdown__menu,
+.site-footer .nav-dropdown:focus-within .nav-dropdown__menu {
+  transform: translateY(0);
+}
+
 .site-footer__copy {
   margin: 0;
   color: var(--hint);
