@@ -1167,6 +1167,13 @@ a:hover { text-decoration: underline; }
   cursor: pointer;
 }
 .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+/* .btn { display: inline-flex } beats native [hidden] — force hide */
+.pay-btn[hidden],
+#payBtn[hidden],
+.paypal-buttons[hidden],
+.is-hidden {
+  display: none !important;
+}
 .paypal-buttons {
   margin-top: 12px;
   min-height: 45px;

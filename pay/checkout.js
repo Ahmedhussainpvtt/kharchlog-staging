@@ -27,9 +27,12 @@
     if (payBtn) {
       payBtn.textContent = currency === 'USD' ? 'Pay $2 with PayPal' : 'Pay ₹149';
       payBtn.hidden = currency === 'USD';
+      payBtn.classList.toggle('is-hidden', currency === 'USD');
+      payBtn.setAttribute('aria-hidden', currency === 'USD' ? 'true' : 'false');
     }
     if (paypalWrap) {
       paypalWrap.hidden = currency !== 'USD';
+      paypalWrap.classList.toggle('is-hidden', currency !== 'USD');
     }
     if (fineEl) {
       fineEl.innerHTML =
@@ -393,6 +396,11 @@
   }
 
   function openCheckout() {
+    if (currency === 'USD') {
+      setStatus('Use the PayPal buttons below to pay in USD');
+      ensurePaypalButtons();
+      return;
+    }
     var buyer = readBuyer();
     if (!buyer) return;
 
@@ -444,6 +452,9 @@
         }
         if (orderData && orderData.ok && orderData.provider === 'razorpay' && orderData.orderId) {
           return openRazorpayModal(buyer, orderData);
+        }
+        if (orderData && orderData.provider === 'paypal') {
+          throw new Error('Use the PayPal buttons for USD checkout');
         }
         if (orderData && orderData.error) {
           throw new Error(orderData.error);
