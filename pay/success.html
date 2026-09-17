@@ -71,6 +71,8 @@
       var paymentId = (params.get('payment_id') || params.get('paymentId') || '').trim();
       var orderId = (params.get('order_id') || params.get('orderId') || '').trim();
       var signature = (params.get('signature') || '').trim();
+      var provider = (params.get('provider') || '').trim().toLowerCase();
+      var alreadyPaid = params.get('paid') === '1' || params.get('paid') === 'true';
 
       var titleEl = document.getElementById('title');
       var tagEl = document.getElementById('tagline');
@@ -158,6 +160,16 @@
 
       if (!cfg.trackerUrl) {
         fail('Missing trackerUrl in pay/config.js');
+        return;
+      }
+
+      // PayPal already captured + granted on /paypal/capture
+      if (provider === 'paypal' && alreadyPaid && (paymentId || orderId)) {
+        ok(email);
+        return;
+      }
+      if (provider === 'paypal' && params.get('staging') === '1') {
+        fail('Staging PayPal payments do not unlock production access.');
         return;
       }
 

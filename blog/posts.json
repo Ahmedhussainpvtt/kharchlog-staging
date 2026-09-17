@@ -177,12 +177,12 @@
                       "url":  "/blog/how-to-track-expenses-automatically-with-sms/",
                       "image":  "/images/blog/how-to-track-expenses-automatically-with-sms.jpg",
                       "tags":  [
-                                   "sms expense tracker",
-                                   "automatic expense tracking",
-                                   "android"
-                               ]
-                  },
-                  {
+        "sms expense tracker",
+        "automatic expense tracking",
+        "android"
+      ]
+    },
+    {
                       "slug":  "google-sheets-vs-budget-apps",
                       "title":  "Google Sheets expense tracker vs closed budget apps",
                       "description":  "Compare keeping expenses in Google Sheets versus locking history inside a budget app. Why ownership matters for long-term tracking.",
@@ -190,12 +190,12 @@
                       "url":  "/blog/google-sheets-vs-budget-apps/",
                       "image":  "/images/blog/google-sheets-vs-budget-apps.jpg",
                       "tags":  [
-                                   "google sheets expense tracker",
-                                   "budget app",
-                                   "personal finance"
-                               ]
-                  },
-                  {
+        "google sheets expense tracker",
+        "budget app",
+        "personal finance"
+      ]
+    },
+    {
                       "slug":  "daily-expense-tracker-habits",
                       "title":  "Daily expense tracker habits that actually stick",
                       "description":  "Practical habits for a daily expense tracker: log same day, use categories, review weekly. Tips inspired by simple money books.",
@@ -203,10 +203,10 @@
                       "url":  "/blog/daily-expense-tracker-habits/",
                       "image":  "/images/blog/daily-expense-tracker-habits.jpg",
                       "tags":  [
-                                   "daily expense tracker",
-                                   "spending habits",
-                                   "budget tips"
-                               ]
-                  }
-              ]
+        "daily expense tracker",
+        "spending habits",
+        "budget tips"
+      ]
+    }
+  ]
 }

@@ -5,10 +5,16 @@
   var emailInput = document.getElementById('email');
   var phoneInput = document.getElementById('phone');
   var payBtn = document.getElementById('payBtn');
+  var paypalWrap = document.getElementById('paypal-buttons');
   var statusEl = document.getElementById('status');
   var priceEl = document.getElementById('pay-price');
+  var fineEl = document.getElementById('pay-fine');
   var params = new URLSearchParams(window.location.search);
-  var currency = (params.get('currency') || cfg.currency || 'INR').toUpperCase() === 'USD' ? 'USD' : 'INR';
+  var USD_ENABLED = !!(cfg.paypalClientId || cfg.usdEnabled);
+  var requested = (params.get('currency') || cfg.currency || 'INR').toUpperCase();
+  var currency = USD_ENABLED && requested === 'USD' ? 'USD' : 'INR';
+  var paypalSdkReady = null;
+  var paypalRendered = false;
 
   function priceLabel() {
     return currency === 'USD' ? '$2' : '₹149';
@@ -18,14 +24,46 @@
     if (priceEl) {
       priceEl.innerHTML = priceLabel() + ' <span class="pay-once">one-time</span>';
     }
+    if (payBtn) {
+      payBtn.textContent = currency === 'USD' ? 'Pay $2 with PayPal' : 'Pay ₹149';
+      payBtn.hidden = currency === 'USD';
+    }
+    if (paypalWrap) {
+      paypalWrap.hidden = currency !== 'USD';
+    }
+    if (fineEl) {
+      fineEl.innerHTML =
+        currency === 'USD'
+          ? 'Secure checkout via PayPal (USD). Questions? <a href="mailto:easypeezetools@gmail.com">easypeezetools@gmail.com</a>'
+          : 'Secure checkout via Razorpay. Questions? <a href="mailto:easypeezetools@gmail.com">easypeezetools@gmail.com</a>';
+    }
     document.querySelectorAll('.pay-currency__btn').forEach(function (btn) {
-      btn.classList.toggle('is-active', btn.getAttribute('data-currency') === currency);
+      var isUsd = btn.getAttribute('data-currency') === 'USD';
+      btn.classList.toggle('is-active', (isUsd && currency === 'USD') || (!isUsd && currency === 'INR'));
+      if (isUsd && !USD_ENABLED) {
+        btn.disabled = true;
+        btn.setAttribute('aria-disabled', 'true');
+        btn.classList.add('pay-currency__btn--soon');
+        if (btn.querySelector('.pay-currency__soon') === null) {
+          btn.innerHTML =
+            'Pay in $ USD <span class="pay-currency__soon">Coming soon</span>';
+        }
+      } else if (isUsd && USD_ENABLED) {
+        btn.disabled = false;
+        btn.removeAttribute('aria-disabled');
+        btn.classList.remove('pay-currency__btn--soon');
+        btn.textContent = 'Pay in $ USD';
+      }
     });
+    if (currency === 'USD' && USD_ENABLED) {
+      ensurePaypalButtons();
+    }
   }
 
   syncCurrencyUi();
   document.querySelectorAll('.pay-currency__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
+      if (btn.disabled || btn.getAttribute('aria-disabled') === 'true') return;
       currency = btn.getAttribute('data-currency') === 'USD' ? 'USD' : 'INR';
       syncCurrencyUi();
     });
@@ -49,7 +87,6 @@
     return String(value || '').trim().replace(/\s+/g, ' ');
   }
 
-  /** Reject empty / digits / keyboard smash / blocklist junk. Allows Latin + Devanagari names. */
   function isRealPersonName(value) {
     var name = normalizeName(value);
     if (name.length < 2 || name.length > 40) return false;
@@ -70,11 +107,6 @@
     return true;
   }
 
-  /**
-   * Require a real phone with country code (E.164).
-   * 10-digit Indian mobiles (6–9…) are accepted and stored as +91…
-   * Returns "+<digits>" or null.
-   */
   function normalizePhone(raw) {
     var s = String(raw || '').trim();
     if (!s) return null;
@@ -101,7 +133,6 @@
   }
 
   function readEmailFromQuery() {
-    var params = new URLSearchParams(window.location.search);
     var e = (params.get('email') || '').trim();
     if (e && emailInput) emailInput.value = e;
   }
@@ -112,13 +143,8 @@
       if (payBtn) payBtn.disabled = true;
       return false;
     }
-    if (!cfg.razorpayKeyId) {
+    if (!USD_ENABLED && !cfg.razorpayKeyId) {
       setStatus('Payment is not configured yet. Try again shortly.', true);
-      if (payBtn) payBtn.disabled = true;
-      return false;
-    }
-    if (typeof Razorpay !== 'function') {
-      setStatus('Razorpay SDK failed to load — refresh and try again', true);
       if (payBtn) payBtn.disabled = true;
       return false;
     }
@@ -139,15 +165,174 @@
     });
   }
 
+  function capturePaypal(payload) {
+    return fetch(apiBase() + '/paypal/capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      return r.json();
+    });
+  }
+
+  function readBuyer() {
+    var firstName = normalizeName((firstNameInput && firstNameInput.value) || '');
+    var lastName = normalizeName((lastNameInput && lastNameInput.value) || '');
+    var email = (emailInput.value || '').trim().toLowerCase();
+    var phone = normalizePhone((phoneInput && phoneInput.value) || '');
+    if (!isRealPersonName(firstName)) {
+      setStatus('Enter a real first name (letters only, not junk like “test” / “asdf”)', true);
+      if (firstNameInput) firstNameInput.focus();
+      return null;
+    }
+    if (lastName && !isRealPersonName(lastName)) {
+      setStatus('Enter a real last name, or leave it blank', true);
+      if (lastNameInput) lastNameInput.focus();
+      return null;
+    }
+    if (!email || email.indexOf('@') < 1 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('Enter the Google email you will use to sign in to the app', true);
+      emailInput.focus();
+      return null;
+    }
+    if (!phone) {
+      setStatus('Enter a valid phone with country code (e.g. +91 98765 43210)', true);
+      if (phoneInput) phoneInput.focus();
+      return null;
+    }
+    return {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      displayName: [firstName, lastName].filter(Boolean).join(' ')
+    };
+  }
+
+  function loadPaypalSdk() {
+    if (window.paypal) return Promise.resolve();
+    if (paypalSdkReady) return paypalSdkReady;
+    var clientId = cfg.paypalClientId;
+    if (!clientId) {
+      return Promise.reject(new Error('PayPal is not configured'));
+    }
+    paypalSdkReady = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src =
+        'https://www.paypal.com/sdk/js?client-id=' +
+        encodeURIComponent(clientId) +
+        '&currency=USD&intent=capture';
+      s.onload = function () {
+        resolve();
+      };
+      s.onerror = function () {
+        reject(new Error('PayPal SDK failed to load'));
+      };
+      document.head.appendChild(s);
+    });
+    return paypalSdkReady;
+  }
+
+  function ensurePaypalButtons() {
+    if (!paypalWrap || paypalRendered || !USD_ENABLED) return;
+    loadPaypalSdk()
+      .then(function () {
+        if (paypalRendered || !window.paypal) return;
+        paypalRendered = true;
+        window.paypal
+          .Buttons({
+            style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal' },
+            createOrder: function () {
+              var buyer = readBuyer();
+              if (!buyer) return Promise.reject(new Error('Fix the form fields first'));
+              setStatus('Creating PayPal order…');
+              try {
+                sessionStorage.setItem('kharchlog_pay_email', buyer.email);
+                sessionStorage.setItem('kharchlog_pay_firstName', buyer.firstName);
+                sessionStorage.setItem('kharchlog_pay_lastName', buyer.lastName);
+                sessionStorage.setItem('kharchlog_pay_phone', buyer.phone);
+              } catch (e) {}
+              return createOrder({
+                email: buyer.email,
+                phone: buyer.phone,
+                firstName: buyer.firstName,
+                lastName: buyer.lastName,
+                name: buyer.displayName,
+                product: 'kharchlog',
+                planType: 'lifetime',
+      staging: !!(cfg.staging),
+                currency: 'USD',
+                staging: !!cfg.staging
+              }).then(function (orderData) {
+                if (!orderData || !orderData.ok || orderData.provider !== 'paypal' || !orderData.orderId) {
+                  throw new Error((orderData && orderData.error) || 'Could not start PayPal checkout');
+                }
+                setStatus('Continue in PayPal…');
+                return orderData.orderId;
+              });
+            },
+            onApprove: function (data) {
+              var buyer = readBuyer() || {
+                email: (emailInput.value || '').trim().toLowerCase(),
+                firstName: normalizeName((firstNameInput && firstNameInput.value) || ''),
+                lastName: normalizeName((lastNameInput && lastNameInput.value) || ''),
+                phone: normalizePhone((phoneInput && phoneInput.value) || '') || ''
+              };
+              setStatus('Confirming PayPal payment…');
+              return capturePaypal({
+                orderId: data.orderID,
+                email: buyer.email,
+                phone: buyer.phone,
+                firstName: buyer.firstName,
+                lastName: buyer.lastName,
+                product: 'kharchlog',
+                planType: 'lifetime',
+      staging: !!(cfg.staging),
+                staging: !!cfg.staging
+              }).then(function (result) {
+                if (!result || !result.ok) {
+                  throw new Error((result && result.error) || 'PayPal capture failed');
+                }
+                var q = new URLSearchParams();
+                q.set('email', result.email || buyer.email);
+                q.set('firstName', buyer.firstName || '');
+                q.set('lastName', buyer.lastName || '');
+                q.set('phone', buyer.phone || '');
+                q.set('provider', 'paypal');
+                if (result.paymentId) q.set('payment_id', result.paymentId);
+                if (result.orderId) q.set('order_id', result.orderId);
+                q.set('paid', result.paid ? '1' : '0');
+                if (result.staging) q.set('staging', '1');
+                if (result.message) q.set('msg', result.message);
+                window.location.href = (cfg.staging ? 'success.html?' : '/pay/success.html?') + q.toString();
+              });
+            },
+            onCancel: function () {
+              setStatus('PayPal checkout cancelled');
+            },
+            onError: function () {
+              setStatus('PayPal checkout failed — try again', true);
+            }
+          })
+          .render('#paypal-buttons');
+      })
+      .catch(function (e) {
+        setStatus((e && e.message) || 'PayPal failed to load', true);
+      });
+  }
+
   function openRazorpayModal(buyer, orderData) {
     var keyId = (orderData && orderData.razorpayKeyId) || cfg.razorpayKeyId;
     var amount = (orderData && orderData.amount) || cfg.amountPaise;
-    var currency = (orderData && orderData.currency) || cfg.currency || 'INR';
+    var orderCurrency = (orderData && orderData.currency) || 'INR';
     var orderId = orderData && orderData.orderId;
     var fullName = [buyer.firstName, buyer.lastName].filter(Boolean).join(' ');
 
     if (!keyId || !amount) {
       return Promise.reject(new Error('Payment is not configured yet'));
+    }
+    if (typeof Razorpay !== 'function') {
+      return Promise.reject(new Error('Razorpay SDK failed to load — refresh and try again'));
     }
 
     setStatus('Opening checkout…');
@@ -156,7 +341,7 @@
       var options = {
         key: keyId,
         amount: amount,
-        currency: currency,
+        currency: orderCurrency,
         name: cfg.productName || 'Kharch Log',
         description: cfg.productDescription || 'One-time lifetime access',
         prefill: {
@@ -208,43 +393,20 @@
   }
 
   function openCheckout() {
-    var firstName = normalizeName((firstNameInput && firstNameInput.value) || '');
-    var lastName = normalizeName((lastNameInput && lastNameInput.value) || '');
-    var email = (emailInput.value || '').trim().toLowerCase();
-    var phone = normalizePhone((phoneInput && phoneInput.value) || '');
+    var buyer = readBuyer();
+    if (!buyer) return;
 
-    if (!isRealPersonName(firstName)) {
-      setStatus('Enter a real first name (letters only, not junk like “test” / “asdf”)', true);
-      if (firstNameInput) firstNameInput.focus();
-      return;
-    }
-    if (lastName && !isRealPersonName(lastName)) {
-      setStatus('Enter a real last name, or leave it blank', true);
-      if (lastNameInput) lastNameInput.focus();
-      return;
-    }
-    if (!email || email.indexOf('@') < 1 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus('Enter the Google email you will use to sign in to the app', true);
-      emailInput.focus();
-      return;
-    }
-    if (!phone) {
-      setStatus('Enter a valid phone with country code (e.g. +91 98765 43210)', true);
-      if (phoneInput) phoneInput.focus();
-      return;
-    }
-
-    var buyer = { firstName: firstName, lastName: lastName, email: email, phone: phone };
-    var displayName = [firstName, lastName].filter(Boolean).join(' ');
     var ok = window.confirm(
       'You will sign in to Kharch Log with:\n\n' +
-        displayName +
+        buyer.displayName +
         '\n' +
-        email +
+        buyer.email +
         '\n' +
-        phone +
+        buyer.phone +
         '\n\n' +
-        'This must be your correct Google account. Continue to pay ' + priceLabel() + '?'
+        'This must be your correct Google account. Continue to pay ' +
+        priceLabel() +
+        '?'
     );
     if (!ok) return;
 
@@ -256,22 +418,23 @@
     }
 
     try {
-      sessionStorage.setItem('kharchlog_pay_email', email);
-      sessionStorage.setItem('kharchlog_pay_firstName', firstName);
-      sessionStorage.setItem('kharchlog_pay_lastName', lastName);
-      sessionStorage.setItem('kharchlog_pay_phone', phone);
+      sessionStorage.setItem('kharchlog_pay_email', buyer.email);
+      sessionStorage.setItem('kharchlog_pay_firstName', buyer.firstName);
+      sessionStorage.setItem('kharchlog_pay_lastName', buyer.lastName);
+      sessionStorage.setItem('kharchlog_pay_phone', buyer.phone);
     } catch (e) {}
 
     createOrder({
-      email: email,
-      phone: phone,
-      firstName: firstName,
-      lastName: lastName,
-      name: displayName,
+      email: buyer.email,
+      phone: buyer.phone,
+      firstName: buyer.firstName,
+      lastName: buyer.lastName,
+      name: buyer.displayName,
       product: 'kharchlog',
       planType: 'lifetime',
       staging: !!(cfg.staging),
-      currency: currency
+      currency: currency,
+      staging: !!cfg.staging
     })
       .then(function (orderData) {
         if (payBtn) {
